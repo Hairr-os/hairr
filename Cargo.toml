@@ -1,0 +1,36 @@
+[workspace]
+resolver = "2"
+members = [
+    "kernel",
+    "libs/*",
+    "services/*",
+    "drivers/*",
+    "shell",
+    "compatibility",
+    "pkg-manager",
+    "apps/*",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["hairr OS Contributors"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/hairr-os/hairr-os"
+
+[workspace.dependencies]
+# Common dependencies used across the workspace
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.0", features = ["full"] }
+log = "0.4"
+env_logger = "0.11"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+
+[profile.dev]
+opt-level = 0
+debug = true
